@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap4',
     'core',
     'modulo_clientes',
     'modulo_comedores',
@@ -86,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hostal',
-        'PASSWORD': '',
+        'PASSWORD': 'vespucio.2021',
         'USER': 'root',
         'HOST': '127.0.0.1',
         'PORT': '3306',
