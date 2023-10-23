@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Reserva de Habitación</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Reservar</button>
+  </form>
+  <hr>
+  <h2>Disponibilidad de Habitaciones</h2>
+  <form method="GET">
+    {{ form.habitacion.label_tag }} {{ form.habitacion }}
+    <button type="submit">Ver disponibilidad</button>
+  </form>
+  {% if horas_disponibles %}
+  <ul>
+    {% for hora_disponible in horas_disponibles %}
+      <li>{{ hora_disponible.hora }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% if reserva %}
+  <h3>Datos de la Reserva:</h3>
+  <p>Habitación: {{ reserva.habitacion }}</p>
+  <p>Número: {{ reserva.numero }}</p>
+  <p>Cantidad de Camas: {{ reserva.cantidad_camas }}</p>
+  <p>Tipo de Habitación: {{ reserva.tipo_habitacion }}</p>
+  {% endif %}
+{% endblock %}
