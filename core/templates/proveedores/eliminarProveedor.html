@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar Proveedor</title>
+</head>
+<body>
+    <h2>¿Está seguro de que desea eliminar este proveedor?</h2>
+    <p>{{ proveedor.nombre }}, {{ proveedor.descripcion }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Eliminar">
+        <button><a href="{% url 'readProveedor' %}">Cancelar</a></button>
+    </form>
+
+    <script>
+        function confirmarEliminacion() {
+            return confirm('¿Está seguro de que desea eliminar este proveedor?');
+        }
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (event) => {
+            if (!confirmarEliminacion()) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -8,48 +8,73 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Doña Clarita</title>
 </head>
-
-<nav class="navbar navbar-expand-lg">
-    <div class="container op-navbarlist">
-        <a href="#" class="navbar-brand op-logo">
-        <img src="{% static 'hostal/img/LogoRecortado.png' %}" alt="Logo Hostal" class="logo-img" width="280">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Menú de navegación">
-            <span class="navbar-toggler-icon"><i class="fas fa-bars op-vanbar-toggler-icon"></i></span>
-        </button>
-        <div class="collapse navbar-collapse op-navbarlist" id="navbar">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a href="{% url 'home' %}" class="nav-link ml-lg-2 active text-dark fw-bold" style="font-size: 18px" >Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#nosotros" class="nav-link text-dark fw-bold" style="font-size: 18px" >Nosotros</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown text-dark fw-bold">
+<body>
+    <body class="body">
+        <header id="header">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+              <a class="navbar-brand" href="/">
+                <img class="logo" src="{% static 'img/LogoRecortado.png' %}" alt="">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ">
+                  <li class="nav-item">
+                    <a class="nav-link active fw-bold"  style="color: #0097B2; font-size: 18px;" aria-current="page" href="/">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link fw-bold"  style="color: #0097B2; font-size: 18px;" href="#nosotros">Nosotros</a>
+                  </li>
+                 
+                  {% if user.is_authenticated %}
+                  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 18px">
                         {{ user.username }}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li class="nav-item">
-                            <a href="{% url 'reserva_h' %}" class="nav-link text-dark fw-bold" >Reservar Habitacion</a>
-                        </li>
+                    <ul class="dropdown-menu ms-auto">
+                      {% if user.username == 'vale' %}
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;" href="{% url 'registroEmpleado' %}">Añadir empleado</a></li>
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;" href="#">Administrar Comedor</a></li>
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;"href="#">Administrar Habitaciones</a></li>
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;" href="{% url 'addProveedor' %}">Añadir Proveedor</a></li>
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;" href="{% url 'readProveedor' %}">Ver Proveedores</a></li>
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;" href="#">Añadir Huesped</a></li>
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;" href="#">Generar ordén de Compra</a></li>
+                      {% endif %}
+                      {%  if user.es_empleado and user.username != 'vale' %}
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;" href="{% url 'readProveedor' %}">Orden de Pedidos</a></li>
+                      {% endif %}
+                      {% if user.es_cliente == True %}
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;"href="#">Ver Habitaciones</a></li>
+                      <li><a class="dropdown-item" style="color: #0097B2; font-size: 18px;"href="#">Ver Platos</a></li>
+                      {% endif %}
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'logout' %}" class="nav-link text-dark fw-bold" style="font-size: 18px">Cerrar Sesión</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a href="{% url 'login' %}" class="nav-link text-dark fw-bold" style="font-size: 18px">Iniciar Sesión</a>
-                </li>
-            {% endif %}
-            </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link fw-bold"  style="color: #0097B2; font-size: 18px;" href="{% url 'logout' %}">Cerrar Sesión</a>
+                  </li>
+                  {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link fw-bold"  style="color: #0097B2; font-size: 18px;" href="{% url 'login' %}">Iniciar Sesión</a>
+                  </li>
+                  {% endif %}
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </header>
+    
+        <div id="contenido">
+        {% block content %}
+    
+          
+    
+        {% endblock %}
         </div>
-    </div>
-</nav>
-<body>
-    {% block content %}{% endblock %}
+    </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %} 
+      <div>
+        <br>
+        <div class="container, col-12 col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-header">
+            <h1>Añadir Proveedor</h1>
+          </div>
+          <div class="card-body">
+            <form   method="POST" id="formulario">
+              {% csrf_token %}
+              
+              {{form|crispy}}
+             
+            
+             <br>
+             <div class="d-flex justify-content-end mb-3">
+              
+              
+              <input type="submit" value="Registrar" class="btn" style="color: white; background-color: #0097B2">
+
+              &nbsp;
+          </div>
+          </form>
+          
+          {% if  mensaje%}
+          <h4 class="alert alert-success ">{{mensaje}}</h4>
+          {% endif %}
+          </div>
+          </div>
+          <div class="card-footer text-muted">
+         
+          </div>
+        </div>
+      </div>
+      <br>
+{% endblock  %} 

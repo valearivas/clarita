@@ -6,18 +6,24 @@ from .models import *
 from datetime import datetime, timedelta
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-class HabitacionForm(forms.ModelForm):
-    class Meta:
-        model = Habitacion
-        fields = ['numero', 'cantidad_camas', 'tipo_habitacion']
-
-class ReservaForm(forms.ModelForm):
-    class Meta:
-        model = Reserva
-        fields = ['nombres', 'apellidos', 'habitacion']
-
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
-        model = User
+        model = Usuario
         fields = ["username", "first_name", "last_name", "email", "password1", "password2"]
+
+class clienteForm(UserCreationForm):
+    class Meta:
+        model = Usuario
+        fields = [ "username" ,"nombre_empresa", "rut_empresa", "email", "password1", "password2"]
+
+
+class EmpleadoForm(UserCreationForm):
+     class Meta:
+        model = Usuario
+        fields = [ "username" ,"first_name","last_name" , "cargo", "email", "password1", "password2"]
+
+class ProveedorForm(forms.ModelForm):
+    class Meta: 
+        model = Proveedor
+        fields = ['nombre', 'rubro', 'contacto', 'otro']

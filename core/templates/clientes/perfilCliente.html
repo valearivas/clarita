@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div class="container">
+  <div class="mitad1">
+      <div class="card-container">
+          <div class="card mb-3">
+              <br>
+              <div class="row g-0">
+                  <div class="col-md-12">
+                      <img src="{{user.imagen.url}}" class="card-img-top profilepic" alt="...">
+                  </div>
+                  <div class="col-md-12">
+                      <div class="card-body">
+                          <h5 class="card-title">Empresa</h5>
+                          {% if user.es_cliente %}
+                          <li class="list-group-item">{{user.nombre_empresa}}</li>
+                          <li class="list-group-item">Rut: {{user.rut_empresa}}</li>
+                          <li class="list-group-item">Correo: {{user.email}}</li>
+                          {% else %}
+                          <p class="card-text text-center">Doña Clarita</p>
+                          <li class="list-group-item">Nombre: {{user.first_name}}</li>
+                          <li class="list-group-item">Apellido: {{user.last_name}}</li>
+                          <li class="list-group-item">Cargo: {{user.cargo}}</li>
+                          <li class="list-group-item">Correo: {{user.email}}</li>
+                          {% endif %}
+                          <a type="button" class="btn btn-secondary" href="{% url 'logout' %}" style="width: 100%;">Cerrar Sesión</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="mitad2 col-md-6 imagenHostal">
+    <img class="imagenHostal" src="http://lakefront-pvt-ltd.pokharahotelspage.com/data/Pics/OriginalPhoto/5382/538239/538239504/hotel-lakefront-pvt-ltd-pokhara-pic-12.JPEG" alt="Imagen de la otra mitad">
+  </div>
+</div>    
+{% endblock %}

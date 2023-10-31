@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %} 
+
+   
+      
+        <div class="container" style="min-height: 60vh;">
+             
+            <h1 class="card-header"> Gestión de Proveedores </h1>
+            <br>
+            <table class="table table-striped table-hover table-responsive-sm" >
+                <thead style="color: #0097B2">
+                    <tr>
+                        <th class="scope"style="color: #0097B2"> ● </th>
+                        <th class="scope"> NOMBRE </th>
+                        <th class="scope"> RUBRO </th>
+                        <th class="scope"> CONTACTO </th>
+                        <th class="scope"> DESCRIPCIÓN </th>
+                        <th class="scope"> BORRAR</th>
+                        
+                    </tr>
+                </thead>
+                <tbody style="color: #025b6a">
+                    {% for p in proveedor %}
+
+                    <tr>
+                        <td style="color: #0097B2">● </td>
+                        <td>{{p.nombre}}</td>
+                        <td>{{p.rubro}}</td>
+                        <td>{{p.contacto}}</td>
+                        <td>{{p.otro}}</td>
+                        
+                        
+                      
+                        
+                    
+                        <td><a href="{% url 'eliminarProveedor' p.id %}">❌</a></td>
+                        
+                       
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        
+{% endblock %} 

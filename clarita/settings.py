@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+AUTH_USER_MODEL = "core.Usuario" 
 
 # Application definition
 
@@ -81,7 +85,7 @@ WSGI_APPLICATION = 'clarita.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hostal_donnaclara',
+        'NAME': 'clarita',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',

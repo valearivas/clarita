@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'app/base/base.html' %}
+    {%load static%}
+    {% load crispy_forms_tags %}
+    {% block contenido %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" 
+    integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    {% csrf_token %}
+
+    <center><h1>Tabla de habitaciones</h1></center>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="scope">N°Habitacion</th>
+                    <th class="scope">Nombre</th>
+                    <th class="scope">Precio</th>
+                    <th class="scope">N°Cmas</th>
+                    <th class="scope">Descripcion</th>
+                    <th class="scope">Estado N°Habitacion</th>
+                    <th class="scope">Imagen</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for i in habitacion %}
+                <tr>
+                    <th>{{i.n_habitacion}}</th>
+                    <th>{{i.nombre}}</th>
+                    <th>{{i.precio}}</th>
+                    <th>{{i.n_camas}}</th>
+                    <th>{{i.descripcion}}</th>
+                    <th>{{i.estado_habitacion}}</th>
+                    <th>{{i.imagen}}</th>
+                    <th> <a href="{% url 'formu_update' i.nombre %}"><button class="btn btn-warning" style="color: white;">UPDATE</button></a></th>
+                    <th> <a href=""><button class="btn btn-danger" style="color: white;">DELETE</button></a></th>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <a href="formu_create"><button class="btn btn-success">Create</button></a>
+              
+    {{form|crispy}}
+
+   
+    {% endblock  %} 
+    
+    
+    
+</body>
+</html>
